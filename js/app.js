@@ -64,9 +64,12 @@
         }
 
         function updateComparisonSlider(value) {
-            const pct = Math.min(100, Math.max(0, Number(value) || 50));
+            const numericValue = Number(value);
+            const pct = Number.isFinite(numericValue)
+                ? Math.min(100, Math.max(0, numericValue))
+                : 50;
             comparisonSlider.value = String(pct);
-            comparisonOverlay.style.width = `${pct}%`;
+            comparisonOverlay.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
             sliderHandle.style.left = `${pct}%`;
         }
 
