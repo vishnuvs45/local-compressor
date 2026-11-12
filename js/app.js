@@ -75,8 +75,7 @@
 
         function resetPreview() {
             comparisonEmpty.innerHTML = `
-                <i class="fa-regular fa-image text-4xl mb-2 opacity-40"></i>
-                <p class="text-xs">Upload an image to compare original vs compressed live</p>
+                <p class="text-xs">Your before-and-after preview will appear here</p>
             `;
             comparisonBox.classList.add('hidden');
             comparisonEmpty.classList.remove('hidden');
@@ -381,23 +380,15 @@
 
                 tr.innerHTML = `
                     <td class="py-3 px-3">
-                        <div class="flex items-center space-x-2">
-                            <i class="fa-solid fa-image text-emerald-400 text-base"></i>
-                            <div class="truncate max-w-[150px] sm:max-w-[200px]">
-                                <p class="font-medium text-white truncate" title="${escapeHtml(item.name)}">${escapeHtml(item.name)}</p>
-                                <p class="text-[10px] text-gray-500 uppercase font-mono">${escapeHtml(item.type.split('/')[1] || 'IMAGE')}</p>
-                            </div>
-                        </div>
+                        <p class="font-medium text-white truncate max-w-[150px] sm:max-w-[200px]" title="${escapeHtml(item.name)}">${escapeHtml(item.name)}</p>
                     </td>
                     <td class="py-3 px-3 font-mono text-gray-400">${formatBytes(item.size)}</td>
                     <td class="py-3 px-3 font-mono text-white font-medium">
-                        ${item.status === 'done' ? formatBytes(item.compressedSize) : item.status === 'error' ? `<span class="text-red-400" title="${escapeHtml(item.error)}">Failed</span>` : '<i class="fa-solid fa-spinner animate-spin text-brand-500"></i>'}
+                        ${item.status === 'done' ? formatBytes(item.compressedSize) : item.status === 'error' ? `<span class="text-red-400" title="${escapeHtml(item.error)}">Failed</span>` : '<span class="text-gray-500">Processing</span>'}
                     </td>
                     <td class="py-3 px-3">
                         ${item.status === 'done' 
-                            ? `<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono ${isPositiveSaved ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' : 'bg-gray-800 text-gray-400'}">
-                                ${isPositiveSaved ? '-' + savedPercent + '%' : '0%'}
-                               </span>`
+                            ? `<span class="text-xs ${isPositiveSaved ? 'text-emerald-400' : 'text-gray-500'}">${isPositiveSaved ? '-' + savedPercent + '%' : '0%'}</span>`
                             : item.status === 'error' ? '<span class="text-red-400" title="Compression failed">Error</span>' : '-'
                         }
                     </td>
@@ -405,11 +396,11 @@
                         <div class="flex items-center justify-end space-x-2">
                             <button onclick="downloadSingleItem('${item.id}')" 
                                ${item.status !== 'done' ? 'disabled' : ''}
-                               class="action-btn p-1.5 rounded-lg bg-dark-900 border border-gray-700 hover:border-brand-500 hover:text-brand-500 text-gray-300 transition-colors ${item.status !== 'done' ? 'pointer-events-none opacity-40' : ''}" 
+                               class="action-btn p-1.5 rounded text-gray-400 hover:text-brand-500 transition-colors ${item.status !== 'done' ? 'pointer-events-none opacity-40' : ''}"
                                title="Download Single File">
                                 <i class="fa-solid fa-download"></i>
                             </button>
-                            <button onclick="removeItem('${item.id}')" class="action-btn p-1.5 rounded-lg bg-dark-900 border border-gray-700 hover:border-red-500 hover:text-red-400 text-gray-400 transition-colors" title="Remove File">
+                            <button onclick="removeItem('${item.id}')" class="action-btn p-1.5 rounded text-gray-400 hover:text-red-400 transition-colors" title="Remove File">
                                 <i class="fa-solid fa-trash-can"></i>
                             </button>
                         </div>
@@ -475,9 +466,8 @@
             } else {
                 resetPreview();
                 comparisonEmpty.innerHTML = `
-                    <i class="fa-solid ${item.status === 'error' ? 'fa-circle-exclamation text-red-400' : 'fa-image text-brand-500'} text-4xl mb-2 opacity-80"></i>
                     <p class="text-xs text-white font-medium">${escapeHtml(item.name)}</p>
-                    <p class="text-[11px] text-gray-400 mt-1">${item.status === 'error' ? escapeHtml(item.error) : 'Image processing in progress...'}</p>
+                    <p class="text-[11px] ${item.status === 'error' ? 'text-red-400' : 'text-gray-400'} mt-1">${item.status === 'error' ? escapeHtml(item.error) : 'Processing image…'}</p>
                 `;
             }
         }

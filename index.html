@@ -42,202 +42,100 @@
     <link rel="stylesheet" href="css/styles.css">
 
 </head>
-<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-brand-500 selection:text-white">
+<body class="min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
 
-    <!-- Header Navigation -->
-    <header class="border-b border-gray-800 bg-dark-900/80 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center text-dark-900 shadow-lg shadow-brand-500/20">
-                    <i class="fa-solid font-bold fa-shield-halved text-xl"></i>
-                </div>
-                <div>
-                    <div class="flex items-center space-x-2">
-                        <span class="font-bold text-lg text-white tracking-tight">VaultCompress</span>
-                        <span class="text-xs px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-500 border border-brand-500/20 font-mono font-medium">Image Compressor</span>
-                    </div>
-                    <p class="text-xs text-gray-400 hidden sm:block">Private, browser-based image compression</p>
-                </div>
-            </div>
-
-            <!-- Privacy Guarantee Status Badge -->
-            <div class="flex items-center space-x-3">
-                <div class="flex items-center space-x-2 bg-emerald-950/40 border border-emerald-500/30 px-3 py-1.5 rounded-full text-xs text-emerald-400">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                    </span>
-                    <span class="font-medium hidden md:inline">Your images stay in this browser</span>
-                    <span class="font-medium md:hidden">Local processing</span>
-                </div>
-
-                <a href="#privacy-audit" class="text-xs text-gray-400 hover:text-white transition-colors flex items-center space-x-1 border border-gray-700 hover:border-gray-600 px-3 py-1.5 rounded-lg">
-                    <i class="fa-solid fa-lock"></i>
-                    <span>Privacy Audit</span>
-                </a>
-            </div>
+    <header class="border-b border-gray-800/70">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+            <a href="#" class="font-semibold tracking-tight text-white">VaultCompress</a>
+            <a href="#privacy-audit" class="text-xs text-gray-400 hover:text-white transition-colors">Privacy</a>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 flex-grow w-full space-y-8">
 
-        <!-- Header Hero & Trust Badges -->
-        <div class="text-center max-w-3xl mx-auto space-y-4">
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                Compress Images Locally. <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-500 via-emerald-400 to-teal-300">Keep Data Private.</span>
+        <div class="max-w-3xl space-y-3">
+            <h1 class="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
+                Compress images, <span class="text-brand-500">right here.</span>
             </h1>
-            <p class="text-gray-400 text-sm sm:text-base">
-                Your images are compressed in this browser and are never uploaded. The page uses browser-native image processing.
-            </p>
-            
-            <div class="flex flex-wrap items-center justify-center gap-2 pt-2">
-                <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md bg-dark-800 border border-gray-700 text-xs text-gray-300">
-                    <i class="fa-solid fa-check text-brand-500"></i>
-                <span>Browser-native processing</span>
-                </span>
-                <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md bg-dark-800 border border-gray-700 text-xs text-gray-300">
-                    <i class="fa-solid fa-check text-brand-500"></i>
-                    <span>No file uploads</span>
-                </span>
-                <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md bg-dark-800 border border-gray-700 text-xs text-gray-300">
-                    <i class="fa-solid fa-check text-brand-500"></i>
-                    <span>Batch image processing</span>
-                </span>
-                <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md bg-dark-800 border border-gray-700 text-xs text-gray-300">
-                    <i class="fa-solid fa-check text-brand-500"></i>
-                    <span>Metadata removed on export</span>
-                </span>
-            </div>
+            <p class="text-sm text-gray-400">Adjust quality and format, compare the result, then download. Images are processed in your browser.</p>
         </div>
 
-        <!-- Main Interactive Compressor Panel -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
 
-            <!-- Left Controls & Dropzone Panel (5 cols) -->
-            <div class="lg:col-span-5 space-y-6">
+            <div class="lg:col-span-5 space-y-5">
 
-                <!-- Drag & Drop Upload Zone -->
-                <div id="dropzone" role="button" tabindex="0" aria-label="Select images to compress" class="border-2 border-dashed border-gray-700 hover:border-brand-500 rounded-2xl bg-dark-800/60 p-8 text-center transition-all cursor-pointer group hover:bg-dark-800 relative overflow-hidden">
+                <div id="dropzone" role="button" tabindex="0" aria-label="Select images to compress" class="border border-dashed border-gray-700 hover:border-brand-500/70 rounded-xl bg-dark-800/40 hover:bg-dark-800/70 px-5 py-8 text-center transition-colors cursor-pointer group">
                     <input type="file" id="file-input" multiple class="hidden" accept="image/*">
-                    
-                    <div class="space-y-4">
-                        <div class="w-16 h-16 rounded-2xl bg-gray-800 group-hover:bg-brand-500/10 group-hover:text-brand-500 text-gray-400 flex items-center justify-center mx-auto transition-colors border border-gray-700 group-hover:border-brand-500/30">
-                            <i class="fa-solid fa-cloud-arrow-up text-2xl"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm font-semibold text-white group-hover:text-brand-500 transition-colors">
-                                Drop files here or click to browse
-                            </p>
-                            <p class="text-xs text-gray-400 mt-1">
-                                Supports browser-readable image formats (JPEG, PNG, WebP, GIF, and more)
-                            </p>
-                        </div>
-                        <div class="pt-2 flex justify-center items-center space-x-2">
-                            <span class="text-[10px] font-mono uppercase bg-dark-900 border border-gray-700 text-gray-400 px-2 py-0.5 rounded">No file uploads</span>
-                            <span class="text-[10px] font-mono uppercase bg-dark-900 border border-gray-700 text-gray-400 px-2 py-0.5 rounded">Canvas output</span>
-                        </div>
-                    </div>
+                    <p class="text-sm font-medium text-white group-hover:text-brand-500 transition-colors">Drop images here or <span class="underline underline-offset-2">browse files</span></p>
+                    <p class="text-xs text-gray-500 mt-2">JPEG, PNG, WebP, GIF, and other browser-readable images</p>
                 </div>
                 <p id="app-status" class="text-xs text-gray-400 min-h-4" role="status" aria-live="polite"></p>
 
-                <!-- Global Compression Settings Box -->
-                <div class="bg-dark-800 rounded-2xl border border-gray-800 p-6 space-y-5">
-                    <div class="flex items-center justify-between pb-3 border-b border-gray-700/50">
-                        <h2 class="text-sm font-semibold text-white flex items-center space-x-2">
-                            <i class="fa-solid fa-sliders text-brand-500"></i>
-                            <span>Compression Parameters</span>
-                        </h2>
+                <section class="bg-dark-800/60 rounded-xl p-5 sm:p-6 space-y-5">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-sm font-semibold text-white">Compression settings</h2>
                         <button id="reset-settings" class="text-xs text-gray-400 hover:text-white transition-colors">Reset</button>
                     </div>
 
-                    <!-- Format Selector -->
                     <div class="space-y-2">
-                        <label class="text-xs font-medium text-gray-300 flex justify-between">
-                            <span>Output Format</span>
-                            <span class="text-gray-500 text-[11px]">Images canvas convert</span>
-                        </label>
+                        <label class="text-xs font-medium text-gray-300">Output format</label>
                         <div class="grid grid-cols-3 gap-2">
-                            <button type="button" data-format="image/webp" class="format-btn active px-3 py-2 rounded-lg bg-brand-500/20 text-brand-500 border border-brand-500/40 text-xs font-medium transition-all">WebP (Best)</button>
+                            <button type="button" data-format="image/webp" class="format-btn active px-3 py-2 rounded-lg bg-brand-500/20 text-brand-500 border border-brand-500/40 text-xs font-medium transition-all">WebP</button>
                             <button type="button" data-format="image/jpeg" class="format-btn px-3 py-2 rounded-lg bg-dark-900 text-gray-400 border border-gray-700 text-xs font-medium hover:border-gray-600 transition-all">JPEG</button>
                             <button type="button" data-format="image/png" class="format-btn px-3 py-2 rounded-lg bg-dark-900 text-gray-400 border border-gray-700 text-xs font-medium hover:border-gray-600 transition-all">PNG</button>
                         </div>
                     </div>
 
-                    <!-- Quality Slider -->
                     <div class="space-y-2">
                         <div class="flex justify-between items-center">
-                            <label for="quality-slider" class="text-xs font-medium text-gray-300">Quality Factor</label>
+                            <label for="quality-slider" class="text-xs font-medium text-gray-300">Quality</label>
                             <span id="quality-val" class="font-mono text-xs text-brand-500 font-semibold">80%</span>
                         </div>
                         <input type="range" id="quality-slider" min="5" max="100" value="80" class="w-full h-1.5 bg-dark-900 rounded-lg appearance-none cursor-pointer accent-brand-500">
-                        <div class="flex justify-between text-[10px] font-mono text-gray-500">
-                            <span>Max Compression</span>
-                            <span>Balanced</span>
-                            <span>Lossless-like</span>
-                        </div>
                     </div>
 
-                    <!-- Scale/Resolution Slider -->
                     <div class="space-y-2">
                         <div class="flex justify-between items-center">
-                            <label for="scale-slider" class="text-xs font-medium text-gray-300">Max Dimension Scale</label>
+                            <label for="scale-slider" class="text-xs font-medium text-gray-300">Image dimensions</label>
                             <span id="scale-val" class="font-mono text-xs text-brand-500 font-semibold">100% (Original)</span>
                         </div>
                         <input type="range" id="scale-slider" min="10" max="100" value="100" step="5" class="w-full h-1.5 bg-dark-900 rounded-lg appearance-none cursor-pointer accent-brand-500">
-                        <p class="text-[11px] text-gray-500">Downscales image dimensions to drastically reduce footprint.</p>
                     </div>
 
-                    <!-- Privacy and email preset options -->
-                    <div class="pt-3 border-t border-gray-700/50 space-y-3">
+                    <div class="pt-4 border-t border-gray-700/50 space-y-2">
                         <label class="flex items-center justify-between cursor-pointer">
-                            <span class="text-xs font-medium text-gray-300 flex items-center space-x-2">
-                                <i class="fa-solid fa-paperclip text-gray-400"></i>
-                                <span>Email-friendly quality preset (50%)</span>
-                            </span>
+                            <span class="text-xs font-medium text-gray-300">Email-friendly quality (50%)</span>
                             <input type="checkbox" id="target-email" class="w-4 h-4 rounded text-brand-500 focus:ring-brand-500 bg-dark-900 border-gray-700">
                         </label>
-                        <p class="text-[11px] text-gray-500">The final file size depends on the image; this preset does not guarantee an email attachment limit.</p>
-                        <p class="text-[11px] text-gray-500"><i class="fa-solid fa-user-shield mr-1"></i>Metadata is removed when the image is re-encoded.</p>
+                        <p class="text-[11px] text-gray-500">File size varies by image and may not meet every email limit.</p>
                     </div>
-                </div>
+                </section>
 
             </div>
 
             <!-- Right Results & Preview Panel (7 cols) -->
-            <div class="lg:col-span-7 space-y-6">
+            <div class="lg:col-span-7 space-y-5">
 
-                <!-- Split Preview Comparison Card (Active selection) -->
-                <div class="bg-dark-800 rounded-2xl border border-gray-800 p-6 space-y-4">
-                    <div class="flex items-center justify-between border-b border-gray-700/50 pb-3">
-                        <div class="flex items-center space-x-2">
-                            <i class="fa-solid fa-eye text-brand-500 text-sm"></i>
-                            <h3 class="text-sm font-semibold text-white">Live Visual Split Inspector</h3>
-                        </div>
+                <section class="bg-dark-800/60 rounded-xl p-5 sm:p-6 space-y-4">
+                    <div class="flex items-center justify-between gap-3">
+                        <h3 class="text-sm font-semibold text-white">Preview</h3>
                         <div id="inspector-file-name" class="text-xs font-mono text-gray-400 truncate max-w-[200px]">No image selected</div>
                     </div>
 
-                    <!-- Interactive Comparison Box -->
-                    <div id="comparison-wrapper" class="relative min-h-[260px] max-h-[360px] w-full rounded-xl overflow-hidden checkerboard-bg border border-gray-700 flex items-center justify-center">
+                    <div id="comparison-wrapper" class="relative min-h-[260px] max-h-[360px] w-full rounded-lg overflow-hidden checkerboard-bg flex items-center justify-center">
                         <div id="comparison-empty" class="text-center p-6 text-gray-500">
-                            <i class="fa-regular fa-image text-4xl mb-2 opacity-40"></i>
-                            <p class="text-xs">Upload an image to compare original vs compressed live</p>
+                            <p class="text-xs">Your before-and-after preview will appear here</p>
                         </div>
 
-                        <!-- Image comparison container -->
                         <div id="comparison-box" class="hidden w-full h-[320px] relative comparison-slider-container">
-                            <!-- Compressed Image (Base) -->
                             <img id="img-compressed" class="absolute inset-0 w-full h-full object-contain pointer-events-none" src="" alt="Compressed Output">
-                            <span class="absolute top-3 right-3 bg-dark-900/90 text-brand-500 text-[10px] font-mono px-2 py-1 rounded border border-brand-500/30">COMPRESSED</span>
+                            <span class="absolute top-3 right-3 bg-dark-900/80 text-brand-500 text-[10px] px-2 py-1 rounded">Compressed</span>
                             
-                            <!-- Original Image (Overlay) -->
                             <div id="comparison-overlay" class="comparison-slider-overlay">
                                 <img id="img-original" class="absolute inset-0 w-full h-full object-contain max-w-none pointer-events-none" src="" alt="Original Source">
-                                <span class="absolute top-3 left-3 bg-dark-900/90 text-gray-300 text-[10px] font-mono px-2 py-1 rounded border border-gray-700">ORIGINAL</span>
+                                <span class="absolute top-3 left-3 bg-dark-900/80 text-gray-300 text-[10px] px-2 py-1 rounded">Original</span>
                             </div>
 
-                            <!-- Slider Bar -->
                             <input type="range" id="comparison-slider" aria-label="Original and compressed image comparison" min="0" max="100" value="50" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30">
                             <div id="slider-handle" class="absolute top-0 bottom-0 w-0.5 bg-brand-500 pointer-events-none z-20 left-1/2 -translate-x-1/2 flex items-center justify-center">
                                 <div class="w-6 h-6 rounded-full bg-brand-500 text-dark-900 flex items-center justify-center shadow-lg text-xs font-bold">
@@ -246,16 +144,12 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <!-- Batch Queue Table & Action Header -->
-                <div class="bg-dark-800 rounded-2xl border border-gray-800 p-6 space-y-4">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-gray-700/50">
+                <section class="bg-dark-800/60 rounded-xl p-5 sm:p-6 space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <div>
-                            <h3 class="text-sm font-semibold text-white flex items-center space-x-2">
-                                <i class="fa-solid fa-list-check text-brand-500"></i>
-                                <span>Batch File Queue</span>
-                            </h3>
+                            <h3 class="text-sm font-semibold text-white">Files</h3>
                             <p class="text-xs text-gray-400 mt-0.5" id="total-saved-text">0 files processed • 0 KB saved</p>
                         </div>
                         
@@ -263,9 +157,8 @@
                             <button id="clear-all-btn" class="px-3 py-1.5 rounded-lg border border-gray-700 hover:border-gray-600 text-gray-400 hover:text-white text-xs transition-colors hidden">
                                 Clear Queue
                             </button>
-                            <button id="download-zip-btn" disabled class="px-4 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-medium transition-all flex items-center space-x-2 shadow-lg shadow-brand-600/20">
-                                <i class="fa-solid fa-file-zipper"></i>
-                                <span>Download All (.ZIP)</span>
+                            <button id="download-zip-btn" disabled class="px-4 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-medium transition-colors">
+                                Download all
                             </button>
                         </div>
                     </div>
@@ -273,7 +166,7 @@
                     <!-- Table List -->
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-xs text-gray-300">
-                            <thead class="bg-dark-900/60 text-gray-400 font-mono uppercase text-[10px] border-b border-gray-800">
+                            <thead class="text-gray-500 text-[11px] border-b border-gray-800/70">
                                 <tr>
                                     <th class="py-3 px-3">File</th>
                                     <th class="py-3 px-3">Original</th>
@@ -284,82 +177,26 @@
                             </thead>
                             <tbody id="file-queue-tbody" class="divide-y divide-gray-800/60">
                                 <tr id="empty-row">
-                                    <td colspan="5" class="py-8 text-center text-gray-500">
-                                        No files in queue. Drag files above to compress instantly.
-                                    </td>
+                                    <td colspan="5" class="py-8 text-center text-gray-500">No images added yet</td>
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
+                    </section>
                 </div>
 
             </div>
 
         </div>
 
-        <!-- Privacy & Local Security Audit Panel -->
-        <div id="privacy-audit" class="bg-dark-800 border border-gray-800 rounded-2xl p-6 sm:p-8 space-y-6">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-gray-700/50">
-                <div>
-                    <h3 class="text-lg font-bold text-white flex items-center space-x-2">
-                        <i class="fa-solid fa-user-lock text-brand-500"></i>
-                        <span>Local Processing &amp; Privacy</span>
-                    </h3>
-                    <p class="text-xs text-gray-400 mt-1">
-                        Image data stays in browser memory and is never uploaded by this app.
-                    </p>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <span class="px-3 py-1 rounded-full bg-dark-900 border border-emerald-500/40 text-emerald-400 text-xs font-mono">
-                        <i class="fa-solid fa-image mr-1"></i> Files stay in your browser
-                    </span>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="p-4 rounded-xl bg-dark-900/60 border border-gray-800 space-y-2">
-                    <div class="w-8 h-8 rounded-lg bg-brand-500/10 text-brand-500 flex items-center justify-center font-bold">
-                        <i class="fa-solid fa-microchip"></i>
-                    </div>
-                    <h4 class="text-sm font-semibold text-white">Browser Memory Native</h4>
-                    <p class="text-xs text-gray-400">
-                        Images are read locally by your browser. The app does not upload image data or send it to an image-processing service.
-                    </p>
-                </div>
-
-                <div class="p-4 rounded-xl bg-dark-900/60 border border-gray-800 space-y-2">
-                    <div class="w-8 h-8 rounded-lg bg-brand-500/10 text-brand-500 flex items-center justify-center font-bold">
-                        <i class="fa-solid fa-broom"></i>
-                    </div>
-                    <h4 class="text-sm font-semibold text-white">Metadata Removal</h4>
-                    <p class="text-xs text-gray-400">
-                        Re-encoding an image through Canvas removes its embedded metadata, including EXIF location data.
-                    </p>
-                </div>
-
-                <div class="p-4 rounded-xl bg-dark-900/60 border border-gray-800 space-y-2">
-                    <div class="w-8 h-8 rounded-lg bg-brand-500/10 text-brand-500 flex items-center justify-center font-bold">
-                        <i class="fa-solid fa-wifi-slash"></i>
-                    </div>
-                    <h4 class="text-sm font-semibold text-white">External Page Assets</h4>
-                    <p class="text-xs text-gray-400">
-                        Tailwind CSS, Font Awesome, and JSZip load from public CDNs. An internet connection is needed to fetch these libraries; image processing itself stays local.
-                    </p>
-                </div>
-            </div>
-        </div>
+        <p id="privacy-audit" class="text-xs text-gray-500">
+            Images are processed in your browser and are not uploaded. Re-encoding removes embedded metadata. Page libraries load from public CDNs.
+        </p>
 
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-800 bg-dark-900 py-6 mt-12 text-center text-xs text-gray-500">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-shield text-brand-500"></i>
-                <span>VaultCompress Client Engine • Local Browser Memory</span>
-            </div>
-            <p>Designed for Photographers, Legal Teams, and Privacy Conscious Users.</p>
-        </div>
+    <footer class="border-t border-gray-800/70 py-4 text-center text-xs text-gray-500">
+        VaultCompress
     </footer>
 
     <script src="js/app.js" defer></script>
