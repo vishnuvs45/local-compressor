@@ -95,14 +95,16 @@
                             <span id="quality-val" class="font-mono text-xs text-brand-500 font-semibold">80%</span>
                         </div>
                         <input type="range" id="quality-slider" min="5" max="100" value="80" class="w-full h-1.5 bg-dark-900 rounded-lg appearance-none cursor-pointer accent-brand-500">
+                        <p class="text-[11px] text-gray-500">For JPEG and WebP: higher keeps the image sharper but makes a larger file. PNG ignores this setting.</p>
                     </div>
 
                     <div class="space-y-2">
                         <div class="flex justify-between items-center">
-                            <label for="scale-slider" class="text-xs font-medium text-gray-300">Image dimensions</label>
+                            <label for="scale-slider" class="text-xs font-medium text-gray-300">Image size</label>
                             <span id="scale-val" class="font-mono text-xs text-brand-500 font-semibold">100% (Original)</span>
                         </div>
                         <input type="range" id="scale-slider" min="10" max="100" value="100" step="5" class="w-full h-1.5 bg-dark-900 rounded-lg appearance-none cursor-pointer accent-brand-500">
+                        <p id="scale-preview" class="text-[11px] text-gray-500" aria-live="polite">Add an image to see its output dimensions.</p>
                     </div>
 
                     <div class="pt-4 border-t border-gray-700/50 space-y-2">

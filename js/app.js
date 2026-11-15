@@ -17,6 +17,7 @@
         const qualityVal = document.getElementById('quality-val');
         const scaleSlider = document.getElementById('scale-slider');
         const scaleVal = document.getElementById('scale-val');
+        const scalePreview = document.getElementById('scale-preview');
         const formatBtns = document.querySelectorAll('.format-btn');
         const targetEmailCheckbox = document.getElementById('target-email');
         const resetSettingsBtn = document.getElementById('reset-settings');
@@ -61,6 +62,26 @@
             appStatus.textContent = message;
             appStatus.classList.toggle('text-red-400', isError);
             appStatus.classList.toggle('text-gray-400', !isError);
+        }
+
+        function updateScalePreview() {
+            const item = state.files.find(file => file.id === state.selectedId);
+            if (!item) {
+                scalePreview.textContent = 'Add an image to see its output dimensions.';
+                return;
+            }
+            if (!item.originalWidth || !item.originalHeight) {
+                scalePreview.textContent = 'Loading image dimensions…';
+                return;
+            }
+
+            const scale = Number(scaleSlider.value) / 100;
+            const width = Math.max(1, Math.round(item.originalWidth * scale));
+            const height = Math.max(1, Math.round(item.originalHeight * scale));
+            const originalDimensions = `${item.originalWidth} × ${item.originalHeight} px`;
+            scalePreview.textContent = scale === 1
+                ? `Output: ${originalDimensions} (original size)`
+                : `Output: ${width} × ${height} px (original: ${originalDimensions})`;
         }
 
         function updateComparisonSlider(value) {
@@ -133,6 +154,7 @@
                 const val = e.target.value;
                 state.scale = val / 100;
                 scaleVal.textContent = val == 100 ? '100% (Original)' : `${val}%`;
+                updateScalePreview();
                 reprocessImages();
             });
 
@@ -195,6 +217,8 @@
                     name: file.name,
                     size: file.size,
                     type: file.type,
+                    originalWidth: 0,
+                    originalHeight: 0,
                     compressedBlob: null,
                     compressedSize: 0,
                     originalUrl: URL.createObjectURL(file),
@@ -257,6 +281,9 @@
                         resolve();
                         return;
                     }
+                    item.originalWidth = img.width;
+                    item.originalHeight = img.height;
+                    if (item.id === state.selectedId) updateScalePreview();
 
                     try {
                         const canvas = document.createElement('canvas');
@@ -325,6 +352,7 @@
             qualityVal.textContent = '80%';
             scaleSlider.value = '100';
             scaleVal.textContent = '100% (Original)';
+            updateScalePreview();
             targetEmailCheckbox.checked = false;
             formatBtns.forEach(btn => {
                 const isSelected = btn.dataset.format === state.format;
@@ -455,6 +483,7 @@
             if (!item) return;
 
             inspectorFileName.textContent = item.name;
+            updateScalePreview();
 
             if (item.type.startsWith('image/') && item.status === 'done') {
                 comparisonEmpty.classList.add('hidden');
@@ -495,6 +524,7 @@
                     state.selectedId = null;
                     resetPreview();
                     inspectorFileName.textContent = 'No file selected';
+                    updateScalePreview();
                 }
 
                 renderTable();
@@ -512,6 +542,7 @@
             });
             state.files = [];
             state.selectedId = null;
+            updateScalePreview();
             fileQueueTbody.innerHTML = '';
             fileQueueTbody.appendChild(emptyRow);
             comparisonBox.classList.add('hidden');
