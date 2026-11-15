@@ -3,7 +3,7 @@
             files: [], // Array of { id, originalFile, compressedBlob, originalUrl, compressedUrl, name, size, compressedSize, type, format, status }
             quality: 0.8,
             scale: 1.0,
-            format: 'image/webp',
+            format: 'image/jpeg',
             emailPreset: false,
             qualityBeforeEmailPreset: null,
             selectedId: null,
@@ -318,7 +318,7 @@
         function resetSettings() {
             state.quality = 0.8;
             state.scale = 1;
-            state.format = 'image/webp';
+            state.format = 'image/jpeg';
             state.emailPreset = false;
             state.qualityBeforeEmailPreset = null;
             qualitySlider.value = '80';
