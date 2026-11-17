@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VaultCompress - Local-First Privacy File Compressor</title>
     <meta name="description" content="Compress images privately in your browser. Files stay on your device, and the app works offline after your first visit.">
+    <meta name="theme-color" content="#090e18">
     <!-- Tailwind CSS -->
     <script src="assets/vendor/tailwindcss.js"></script>
     <script>
@@ -44,40 +45,47 @@
 </head>
 <body class="min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
 
-    <header class="border-b border-gray-800/70">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
-            <a href="#" class="font-semibold tracking-tight text-white">VaultCompress</a>
-            <a href="#privacy-audit" class="text-xs text-gray-400 hover:text-white transition-colors">Privacy</a>
+    <header class="app-header border-b border-gray-800/70">
+        <div class="header-inner max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+            <a href="#" class="brand-link font-semibold tracking-tight text-white" aria-label="VaultCompress home">
+                <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-layer-group"></i></span>
+                <span>VaultCompress</span>
+            </a>
+            <a href="#privacy-audit" class="privacy-link text-xs text-gray-400 hover:text-white transition-colors">
+                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                <span>Privacy first</span>
+            </a>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 flex-grow w-full space-y-8">
+    <main class="main-shell max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 flex-grow w-full space-y-8">
 
-        <div class="max-w-3xl space-y-3">
+        <div class="hero max-w-3xl space-y-3">
+            <p class="hero-eyebrow"><span aria-hidden="true"></span> Private image compression</p>
             <h1 class="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
-                Compress images, <span class="text-brand-500">right here.</span>
+                Make images lighter.<br class="hidden sm:block"> <span class="text-brand-500">Keep them yours.</span>
             </h1>
-            <p class="text-sm text-gray-400">Adjust quality and format, compare the result, then download. Images are processed entirely on your device—never uploaded.</p>
-            <p class="text-xs text-brand-500">Works offline after your first visit.</p>
+            <p class="hero-description text-sm text-gray-400">Compress, compare, and download in seconds. Your images are processed on this device and never uploaded.</p>
+            <p class="offline-note text-xs text-brand-500"><i class="fa-solid fa-wifi" aria-hidden="true"></i> Works offline after your first visit</p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        <div class="workspace-grid grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
 
             <div class="lg:col-span-5 space-y-5">
 
-                <div id="dropzone" role="button" tabindex="0" aria-label="Select images to compress" class="border-2 border-dashed border-gray-700 hover:border-brand-500/70 rounded-xl bg-dark-800/40 hover:bg-dark-800/70 px-5 py-10 sm:py-12 text-center transition-colors cursor-pointer group">
+                <div id="dropzone" role="button" tabindex="0" aria-label="Select images to compress" class="upload-dropzone border-2 border-dashed border-gray-700 hover:border-brand-500/70 rounded-xl bg-dark-800/40 hover:bg-dark-800/70 px-5 py-10 sm:py-12 text-center transition-colors cursor-pointer group">
                     <input type="file" id="file-input" multiple class="hidden" accept="image/*">
-                    <i class="fa-solid fa-cloud-arrow-up text-2xl text-gray-500 group-hover:text-brand-500 transition-colors" aria-hidden="true"></i>
-                    <p class="text-sm font-medium text-white group-hover:text-brand-500 transition-colors mt-3">Drop your image here</p>
-                    <p class="text-xs text-gray-400 mt-1">or click to browse files</p>
-                    <p class="text-[11px] text-gray-500 mt-3">JPEG, PNG, WebP, GIF, and more</p>
+                    <span class="upload-icon" aria-hidden="true"><i class="fa-solid fa-arrow-up-from-bracket"></i></span>
+                    <p class="upload-title text-sm font-medium text-white group-hover:text-brand-500 transition-colors mt-3">Drop your images here</p>
+                    <p class="text-xs text-gray-400 mt-1">or <span class="browse-link">browse files</span></p>
+                    <p class="upload-formats text-[11px] text-gray-500 mt-3">JPEG, PNG, WebP, GIF, and more</p>
                 </div>
                 <p id="app-status" class="text-xs text-gray-400 min-h-4" role="status" aria-live="polite"></p>
 
-                <section class="bg-dark-800/60 rounded-xl p-5 sm:p-6 space-y-5">
+                <section class="panel settings-panel bg-dark-800/60 rounded-xl p-5 sm:p-6 space-y-5">
                     <div class="flex items-center justify-between">
                         <h2 class="text-sm font-semibold text-white">Compression settings</h2>
-                        <button id="reset-settings" class="text-xs text-gray-400 hover:text-white transition-colors">Reset</button>
+                        <button id="reset-settings" class="text-xs text-gray-400 hover:text-white transition-colors">Reset to default</button>
                     </div>
 
                     <div class="space-y-2">
@@ -119,16 +127,17 @@
             </div>
 
             <!-- Right Results & Preview Panel (7 cols) -->
-            <div class="lg:col-span-7 space-y-5">
+            <div class="results-column lg:col-span-7 space-y-5">
 
-                <section class="bg-dark-800/60 rounded-xl p-5 sm:p-6 space-y-4">
+                <section class="panel preview-panel bg-dark-800/60 rounded-xl p-5 sm:p-6 space-y-4">
                     <div class="flex items-center justify-between gap-3">
                         <h3 class="text-sm font-semibold text-white">Preview</h3>
                         <div id="inspector-file-name" class="text-xs font-mono text-gray-400 truncate max-w-[200px]">No image selected</div>
                     </div>
 
-                    <div id="comparison-wrapper" class="relative min-h-[260px] max-h-[360px] w-full rounded-lg overflow-hidden checkerboard-bg flex items-center justify-center">
-                        <div id="comparison-empty" class="text-center p-6 text-gray-500">
+                    <div id="comparison-wrapper" class="preview-stage relative min-h-[260px] max-h-[360px] w-full rounded-lg overflow-hidden checkerboard-bg flex items-center justify-center">
+                        <div id="comparison-empty" class="preview-placeholder text-center p-6 text-gray-500">
+                            <span class="placeholder-icon" aria-hidden="true"><i class="fa-regular fa-images"></i></span>
                             <p class="text-xs">Your before-and-after preview will appear here</p>
                         </div>
 
@@ -151,7 +160,7 @@
                     </div>
                 </section>
 
-                <section class="bg-dark-800/60 rounded-xl p-5 sm:p-6 space-y-4">
+                <section class="panel files-panel bg-dark-800/60 rounded-xl p-5 sm:p-6 space-y-4">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <div>
                             <h3 class="text-sm font-semibold text-white">Files</h3>
@@ -159,17 +168,17 @@
                         </div>
                         
                         <div class="flex items-center space-x-2">
-                            <button id="clear-all-btn" class="px-3 py-1.5 rounded-lg border border-gray-700 hover:border-gray-600 text-gray-400 hover:text-white text-xs transition-colors hidden">
+                            <button id="clear-all-btn" class="secondary-action px-3 py-1.5 rounded-lg border border-gray-700 hover:border-gray-600 text-gray-400 hover:text-white text-xs transition-colors hidden">
                                 Clear Queue
                             </button>
-                            <button id="download-zip-btn" disabled class="px-4 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-medium transition-colors">
-                                Download all
+                            <button id="download-zip-btn" disabled class="primary-action px-4 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs font-medium transition-colors">
+                                <i class="fa-solid fa-download" aria-hidden="true"></i> Download all
                             </button>
                         </div>
                     </div>
 
                     <!-- Table List -->
-                    <div class="overflow-x-auto">
+                    <div class="table-scroll overflow-x-auto">
                         <table class="w-full text-left text-xs text-gray-300">
                             <thead class="text-gray-500 text-[11px] border-b border-gray-800/70">
                                 <tr>
@@ -193,15 +202,18 @@
 
         </div>
 
-        <p id="privacy-audit" class="text-xs text-gray-500">
-            Images stay on your device. Re-encoding removes embedded metadata. The app and its libraries are saved for offline use after your first visit.
+        <p id="privacy-audit" class="privacy-note text-xs text-gray-500">
+            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+            <span><strong>Private by design.</strong> Images stay on your device. Re-encoding removes embedded metadata. The app and its libraries are saved for offline use after your first visit.</span>
         </p>
 
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-800/70 py-4 text-center text-xs text-gray-500">
-        VaultCompress
+    <footer class="app-footer border-t border-gray-800/70 py-4 text-center text-xs text-gray-500">
+        <span>VaultCompress</span>
+        <span aria-hidden="true">·</span>
+        <span>Images never leave your device</span>
     </footer>
 
     <script src="js/app.js" defer></script>
